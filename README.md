@@ -55,14 +55,15 @@
 - 로그인하지 않은 경우 채팅 차단 안내 메시지 제공
 
 ### 🛠️ 기술 스택
-**구분	기술**
-- Frontend	Streamlit
-- Authentication	streamlit-authenticator
-- AI	OpenAI API
-- Storage	Redis (Upstash)
-- External API	Weather API
-- Deployment	Streamlit Cloud
-- Language	Python
+| 구분 | 기술 |
+|------|------|
+| Frontend | Streamlit |
+| Authentication | streamlit-authenticator |
+| AI | OpenAI API |
+| Storage | Redis (Upstash) |
+| External API | Weather API |
+| Deployment | Streamlit Cloud |
+| Language | Python |
 
 ### 🧩 시스템 구조 요약
 

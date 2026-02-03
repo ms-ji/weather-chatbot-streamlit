@@ -1,0 +1,12 @@
+credentials:
+  usernames:
+    jms:
+      name: 관리자
+      password: $2b$12$pkFPkHKSZ0ZKjyiV9bYphu8UsZws/jXkdjTCx1QeCuWARL/zdBkMu
+    admin:
+      name: 로그인테스트
+      password: $2b$12$q9AzCfxxPFVzJPayQJs0M.qu2U3AmU77fKHsTJHK6Ie871c7dmbJG
+cookie:
+  expiry_days: 7
+  key: some_signature_key
+  name: some_cookie_name

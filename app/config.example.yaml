@@ -1,0 +1,9 @@
+credentials:
+  usernames:
+    admin:
+      name: Admin
+      password: "<hashed-password>"
+cookie:
+  expiry_days: 7
+  key: "<cookie-secret>"
+  name: "<cookie-name>"

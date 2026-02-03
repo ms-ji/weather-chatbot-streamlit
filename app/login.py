@@ -33,5 +33,19 @@ def login_gate(config_path: str = "config.yaml"):
     authentication_status = st.session_state.get("authentication_status")
     username = st.session_state.get("username")
 
+    # 쿠키 복구가 안 됐을 때만 사이드바 폼을 보여줌
+    if authentication_status is None:
+        with st.sidebar:
+            authenticator.login(
+                location="sidebar",
+                fields={"Form name": "Login"}
+            )
+        # 폼 렌더 후 다시 읽기
+        name = st.session_state.get("name")
+        authentication_status = st.session_state.get("authentication_status")
+        username = st.session_state.get("username")
+
+
     ok = True if authentication_status else False if authentication_status is False else None
     return authenticator, name, ok, username
+

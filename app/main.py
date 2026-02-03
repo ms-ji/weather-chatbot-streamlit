@@ -23,11 +23,25 @@ st.title("✨챗봇")
 authenticator, name, ok, username = login_gate("config.yaml")
 
 # 로그인 버튼/로그아웃 버튼은 sidebar에 두는 게 보통 깔끔
-if ok:
-    authenticator.logout("Logout", "sidebar")
-    st.sidebar.title(f"Welcome {name}")
+# if ok:
+#     authenticator.logout("Logout", "sidebar")
+#     st.sidebar.title(f"Welcome {name}")
+# else:
+#     st.sidebar.info("로그인 후 이용 가능합니다.")
+
+# 로그인 성공 후, 유저 변경 감지해서 세션 초기화
+prev_user = st.session_state.get("active_username")
+
+if ok is True:
+    if prev_user != username:
+        # 유저가 바뀌었으면 채팅 세션 초기화
+        for k in ["messages", "weather_mode"]:
+            st.session_state.pop(k, None)
+        st.session_state["active_username"] = username
+        st.rerun()
 else:
-    st.sidebar.info("로그인 후 이용 가능합니다.")
+    # 로그아웃 상태면 active_username 제거
+    st.session_state.pop("active_username", None)
 
 #--------------------------------------------
 # 하루 채팅 횟수 초기화
@@ -237,6 +251,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

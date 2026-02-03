@@ -24,12 +24,12 @@ WELCOME_MESSAGE = "안녕하세요! ✨ 무엇을 도와드릴까요?"
 #--------------------------------------------
 authenticator, name, ok, username = login_gate("config.yaml")
 
-# 로그인 버튼/로그아웃 버튼은 sidebar에 두는 게 보통 깔끔
-# if ok:
-#     authenticator.logout("Logout", "sidebar")
-#     st.sidebar.title(f"Welcome {name}")
-# else:
-#     st.sidebar.info("로그인 후 이용 가능합니다.")
+# 로그인 버튼/로그아웃 버튼은 sidebar
+if ok:
+    authenticator.logout("Logout", "sidebar")
+    st.sidebar.title(f"Welcome {name}")
+else:
+    st.sidebar.info("로그인 후 이용 가능합니다.")
 
 # 로그인 성공 후, 유저 변경 감지해서 세션 초기화
 prev_user = st.session_state.get("active_username")
@@ -256,6 +256,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

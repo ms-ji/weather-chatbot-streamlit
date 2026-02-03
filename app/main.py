@@ -34,7 +34,7 @@ else:
 #--------------------------------------------
 if ok is True:
     left = get_remaining_24h(username)
-    st.sidebar.caption(f"24시간 남은 채팅: {left} / {DAILY_LIMIT}")
+    st.sidebar.caption(f"24시간 사용한 채팅:  {DAILY_LIMIT - left}  / {DAILY_LIMIT}")
 
 #---------------------------------------------
 # 사이드 바 : 시스템 프롬프트, 온도, 초기화 버튼
@@ -237,5 +237,6 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 

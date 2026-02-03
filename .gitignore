@@ -205,3 +205,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# project secrets
+config.py
+config.yaml
+.env
+.streamlit/secrets.toml
+
+

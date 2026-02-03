@@ -56,11 +56,10 @@ if ok is True:
 # 사이드 바 : 시스템 프롬프트, 온도, 초기화 버튼
 #---------------------------------------------
 with st.sidebar:
-    st.header("설정")
     st.markdown("### 🌤️ 날씨 기능 안내")
     st.markdown(
         """
-        아래 문장을 입력하면 **지역 선택 버튼이 뜨고**,  
+        아래 문장을 입력하면 **지역 선택 버튼**으로  
         원하는 지역의 날씨를 조회할 수 있어요!
 
         **사용 가능한 문장 예시**
@@ -256,6 +255,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

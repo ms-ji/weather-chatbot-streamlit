@@ -17,6 +17,8 @@ client = OpenAI(api_key=OPENAI_KEY)
 st.set_page_config(page_title='Weather챗봇',page_icon="✨")
 st.title("✨챗봇")
 
+WELCOME_MESSAGE = "안녕하세요! ✨ 무엇을 도와드릴까요?"
+
 #--------------------------------------------
 # 로그인 기능
 #--------------------------------------------
@@ -94,7 +96,10 @@ with st.sidebar:
 # 세션 상태 초기화
 #--------------------------------------------------
 if 'messages' not in st.session_state:
-   st.session_state.messages = [{'role':'system','content':system_prompt}]
+   st.session_state.messages = [
+        {'role': 'system', 'content': system_prompt},
+        {'role': 'assistant', 'content': WELCOME_MESSAGE},
+    ]
 
 if 'weather_mode' not in st.session_state:
     st.session_state.weather_mode = False
@@ -251,6 +256,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

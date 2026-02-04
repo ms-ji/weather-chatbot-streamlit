@@ -33,6 +33,10 @@ if ok:
         # 로그아웃 시 세션 정리
         for k in list(st.session_state.keys()):
             del st.session_state[k]
+        st.session_state.messages = [
+        {'role': 'system', 'content': system_prompt},
+        {'role': 'assistant', 'content': WELCOME_MESSAGE},
+    ]
         st.experimental_rerun() # 앱 재실행
 
 else:
@@ -263,6 +267,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

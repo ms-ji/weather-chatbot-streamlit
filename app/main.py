@@ -30,14 +30,9 @@ if ok:
     st.sidebar.title(f"Welcome {name}")
 
     if logout_clicked:
-        # 로그아웃 시 세션 정리
-        for k in list(st.session_state.keys()):
-            del st.session_state[k]
-        st.session_state.messages = [
-        {'role': 'system', 'content': system_prompt},
-        {'role': 'assistant', 'content': WELCOME_MESSAGE},
-    ]
-        st.experimental_rerun() # 앱 재실행
+        for k in ['messages', 'weather_mode']:
+            st.session_state.pop(k, None)
+        st.rerun()
 
 else:
     st.sidebar.info("로그인 후 이용 가능합니다.")
@@ -267,6 +262,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

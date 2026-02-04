@@ -24,23 +24,20 @@ WELCOME_MESSAGE = "안녕하세요! ✨ 무엇을 도와드릴까요?"
 #--------------------------------------------
 authenticator, name, ok, username = login_gate("config.yaml")
 
-# 로그인 버튼/로그아웃 버튼은 sidebar
-with st.sidebar:
-    if ok:
-        st.sidebar.title(f"Welcome {name}")
+# 로그 아웃 클릭 시 
+if ok:
+    logout_clicked = authenticator.logout("Logout", "sidebar")
+    st.sidebar.title(f"Welcome {name}")
 
-        # 로그아웃 클릭을 감지
-        if st.button("Logout"):
-            # streamlit-authenticator 로그아웃 처리(쿠키/상태 정리)
-            authenticator.logout("Logout", "sidebar")
+    if logout_clicked:
+        # 로그아웃 시 세션 정리
+        for k in list(st.session_state.keys()):
+            del st.session_state[k]
+        st.rerun()
 
-            # 채팅/모드/유저 관련 세션 제거
-            for k in ["messages", "weather_mode", "active_username"]:
-                st.session_state.pop(k, None)
+else:
+    st.sidebar.info("로그인 후 이용 가능합니다.")
 
-            st.rerun()
-    else:
-        st.sidebar.info("로그인 후 이용 가능합니다.")
 
 # 로그인 성공 후, 유저 변경 감지해서 세션 초기화
 prev_user = st.session_state.get("active_username")
@@ -266,6 +263,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

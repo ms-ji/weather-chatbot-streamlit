@@ -26,8 +26,15 @@ authenticator, name, ok, username = login_gate("config.yaml")
 
 # 로그인 버튼/로그아웃 버튼은 sidebar
 if ok:
-    authenticator.logout("Logout", "sidebar")
+    logout_clicked = authenticator.logout("Logout", "sidebar")
     st.sidebar.title(f"Welcome {name}")
+
+    if logout_clicked:
+        # 로그아웃 시 세션 정리
+        for k in list(st.session_state.keys()):
+            del st.session_state[k]
+        st.rerun()
+
 else:
     st.sidebar.info("로그인 후 이용 가능합니다.")
 
@@ -255,6 +262,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 

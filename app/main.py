@@ -31,8 +31,8 @@ if ok:
 
     if logout_clicked:
         # 로그아웃 시 세션 정리
-        for k in list(st.session_state.keys()):
-            del st.session_state[k]
+        for k in ["messages", "weather_mode", "active_username"]:
+                st.session_state.pop(k, None)
         st.rerun()
 
 else:
@@ -262,6 +262,7 @@ if st.session_state.weather_mode:
             # 모드 종료 후 다시 렌더링
             st.session_state.weather_mode = False
             st.rerun()
+
 
 
 
